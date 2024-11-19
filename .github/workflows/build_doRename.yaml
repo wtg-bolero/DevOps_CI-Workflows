@@ -31,6 +31,10 @@ env:
   MAVEN_ARGS: "-s ./.m2/settings.xml -B -f ${{ inputs.pom-path }}"
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository -Dmaven.artifact.threads=10"
   JAVA_VERSION: "17"
+  REPO_HOSTNAME: ${{ secrets.REPO_HOSTNAME }}
+  REPO_SPECIAL_SAUCE: ${{ secrets.REPO_SPECIAL_SAUCE }}
+  REPO_USERNAME: ${{ secrets.REPO_USERNAME }}
+  REPO_PASSWORD: ${{ secrets.REPO_PASSWORD }}
 
 jobs:
   build:
@@ -91,13 +95,8 @@ jobs:
       - name: Do OWASP scan
         if: ${{ inputs.do-owasp }}
         run: |
-          mvn $MAVEN_CLI_OPTS clean verify org.owasp:dependency-check-maven:aggregate
+          mvn clean verify org.owasp:dependency-check-maven:aggregate
 
       - name: Do Maven build and deploy
-        env:
-          REPO_HOSTNAME: ${{ secrets.REPO_HOSTNAME }}
-          REPO_SPECIAL_SAUCE: ${{ secrets.REPO_SPECIAL_SAUCE }}
-          REPO_USERNAME: ${{ secrets.REPO_USERNAME }}
-          REPO_PASSWORD: ${{ secrets.REPO_PASSWORD }}
         run: |
           mvn clean deploy
