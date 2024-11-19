@@ -95,7 +95,7 @@ jobs:
       - name: Do OWASP scan
         if: ${{ inputs.do-owasp }}
         run: |
-          mvn clean verify org.owasp:dependency-check-maven:aggregate
+          mvn -DnvdApiKey=${{ secrets.NVD_API_KEY }} org.owasp:dependency-check-maven:aggregate
 
       - name: Do Maven build and deploy
         run: |
