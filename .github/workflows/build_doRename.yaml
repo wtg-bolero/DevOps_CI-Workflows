@@ -7,6 +7,10 @@ on:
         description: 'Path to the pom.xml file'
         required: true
         type: string
+      require-angular:
+        description: 'Add angular to the runner'
+        required: false
+        default: false
       do-rename:
         description: 'Rename for branch/tag'
         required: false
@@ -56,25 +60,31 @@ jobs:
         with:
           maven-version: 3.9.9
 
-      - name: Set up NodeJS
-        uses: actions/setup-node@v4
-        with:
-          node-version: 'lts/hydrogen'
-
-      - name: Set up Angular
-        run: |
-          npm install -g @angular/cli@15
-
       - name: Configure Maven settings
         run: |
           mkdir -p ./.m2
           cp .github/maven/settings.xml ./.m2/settings.xml
 
-      - name: "DEBUG : Validate tools"
+      - name: Validate tooling - java
         run: |
           java -version
           javac -version
           mvn -v
+
+      - name: Set up NodeJS
+        if: ${{ inputs.require-angular }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/hydrogen'
+
+      - name: Set up Angular
+        if: ${{ inputs.require-angular }}
+        run: |
+          npm install -g @angular/cli@15
+
+      - name: Validate tooling - angular
+        if: ${{ inputs.require-angular }}
+        run: |
           npm -v
           ng version
 
