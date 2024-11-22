@@ -11,6 +11,7 @@ on:
         description: 'Add angular to the runner'
         required: false
         default: false
+        type: boolean
       do-rename:
         description: 'Rename for branch/tag'
         required: false
