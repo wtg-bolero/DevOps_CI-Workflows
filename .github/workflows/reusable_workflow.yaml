@@ -64,8 +64,9 @@ jobs:
       - name: Configure Maven settings
         run: |
           mkdir -p ./.m2
-          wget --header "Authorization: token ${GITHUB_TOKEN}" \
-          https://raw.githubusercontent.com/wtg-bolero/DevOps_CI-Workflows/master/.github/maven/settings.xml -O ./.m2/settings.xml
+          curl -H "Authorization: token ${GITHUB_TOKEN}" \
+          -L https://raw.githubusercontent.com/wtg-bolero/DevOps_CI-Workflows/refs/heads/master/.github/maven/settings.xml \
+          -o ./.m2/settings.xml
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
