@@ -33,7 +33,7 @@ on:
 #  workflow_dispatch:
 
 env:
-  MAVEN_ARGS: "-s ./.m2/settings.xml -B -f ${{ inputs.pom-path }}"
+  MAVEN_ARGS: "-s ./alex_maven/.github/maven/settings.xml -B -f ${{ inputs.pom-path }}"
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository -Dmaven.artifact.threads=10"
   JAVA_VERSION: "17"
   REPO_HOSTNAME: ${{ secrets.REPO_HOSTNAME }}
