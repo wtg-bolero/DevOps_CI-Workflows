@@ -61,14 +61,16 @@ jobs:
         with:
           maven-version: 3.9.9
 
-      - name: Configure Maven settings
-        run: |
-          mkdir -p ./.m2
-          curl -H "Authorization: token ${GITHUB_TOKEN}" \
-          -L https://raw.githubusercontent.com/wtg-bolero/DevOps_CI-Workflows/refs/heads/master/.github/maven/settings.xml \
-          -o ./.m2/settings.xml
-
-          cat ./.m2/settings.xml
+      - name: Get Maven Settings
+        uses: actions/checkout@v4
+        with:
+          repository: wtg-bolero/DevOps_CI-Workflows
+          path: alex_maven
+          ref: master
+#          token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
+          sparse-checkout: |
+            .github/maven/settings.xml
+          sparse-checkout-cone-mode: false
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
