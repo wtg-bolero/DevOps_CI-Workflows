@@ -27,6 +27,11 @@ on:
         required: false
         default: false
         type: boolean
+      do-deploy:
+        description: 'Deploy artifacts to repository'
+        required: false
+        default: false
+        type: boolean
 #  push:
 #    branches:
 #      - master
@@ -117,5 +122,11 @@ jobs:
           mvn -DnvdApiKey=${{ secrets.NVD_API_KEY }} org.owasp:dependency-check-maven:aggregate
 
       - name: Do Maven build and deploy
+        if: ${{ inputs.do-deploy }}
         run: |
           mvn clean deploy
+
+      - name: Do Maven build and deploy
+        if: ${{ !inputs.do-deploy }}
+        run: |
+          mvn clean package
