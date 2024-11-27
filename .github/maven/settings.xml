@@ -71,8 +71,8 @@
             <id>repository2</id>
             <properties>
                 <dependency.resolutionConcurrency>5</dependency.resolutionConcurrency>
-                <altSnapshotDeploymentRepository>bolero-snapshots::https://${env.REPO_HOSTNAME}/artifactory/bolero-snapshots/</altSnapshotDeploymentRepository>
-                <altReleaseDeploymentRepository>bolero-releases::https://${env.REPO_HOSTNAME}/artifactory/bolero-releases/</altReleaseDeploymentRepository>
+                <altSnapshotDeploymentRepository>bolero-snapshots::default::https://${env.REPO_HOSTNAME}/artifactory/bolero-snapshots/</altSnapshotDeploymentRepository>
+                <altReleaseDeploymentRepository>bolero-releases::default::https://${env.REPO_HOSTNAME}/artifactory/bolero-releases/</altReleaseDeploymentRepository>
             </properties>
             <repositories>
                 <repository>
