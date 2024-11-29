@@ -41,13 +41,13 @@
         </server>
     </servers>
 
-<!--    <mirrors>-->
-<!--        <mirror>-->
-<!--            <id>central</id>-->
-<!--            <name>Maven Central</name>-->
-<!--            <url>https://repo.maven.apache.org/maven2</url>-->
-<!--            <mirrorOf>central</mirrorOf>-->
-<!--        </mirror>-->
+    <mirrors>
+        <mirror>
+            <id>central</id>
+            <name>Maven Central</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <mirrorOf>central</mirrorOf>
+        </mirror>
 <!--        <mirror>-->
 <!--            <id>bolero-mirrors-consolidated</id>-->
 <!--            <name>repository02 mirrors consolidated</name>-->
@@ -66,7 +66,7 @@
 <!--            <url>https://${env.REPO_HOSTNAME}/artifactory/bolero-snapshots/</url>-->
 <!--            <mirrorOf>!central!bolero-mirrors-consolidated,!mirror-bolero-releases</mirrorOf>-->
 <!--        </mirror>-->
-<!--    </mirrors>-->
+    </mirrors>
 
     <pluginGroups>
         <pluginGroup>org.sonarsource.scanner.maven</pluginGroup>
