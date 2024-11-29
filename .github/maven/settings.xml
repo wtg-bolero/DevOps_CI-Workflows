@@ -3,6 +3,17 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <servers>
         <server>
+            <id>repository2</id>
+            <configuration>
+                <httpHeaders>
+                    <property>
+                        <name>bolero-application</name>
+                        <value>${env.REPO_SPECIAL_SAUCE}</value>
+                    </property>
+                </httpHeaders>
+            </configuration>
+        </server>
+        <server>
             <id>bolero-releases</id>
             <username>${env.REPO_USERNAME}</username>
             <password>${env.REPO_PASSWORD}</password>
@@ -19,17 +30,6 @@
             <id>bolero-snapshots</id>
             <username>${env.REPO_USERNAME}</username>
             <password>${env.REPO_PASSWORD}</password>
-            <configuration>
-                <httpHeaders>
-                    <property>
-                        <name>bolero-application</name>
-                        <value>${env.REPO_SPECIAL_SAUCE}</value>
-                    </property>
-                </httpHeaders>
-            </configuration>
-        </server>
-        <server>
-            <id>repository2</id>
             <configuration>
                 <httpHeaders>
                     <property>
