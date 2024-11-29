@@ -81,17 +81,17 @@
                 <altReleaseDeploymentRepository>bolero-releases::default::https://${env.REPO_HOSTNAME}/artifactory/bolero-releases/</altReleaseDeploymentRepository>
             </properties>
             <repositories>
-<!--                <repository>-->
-<!--                    <id>central</id>-->
-<!--                    <name>Maven Central</name>-->
-<!--                    <url>https://repo.maven.apache.org/maven2</url>-->
-<!--                    <releases>-->
-<!--                        <enabled>true</enabled>-->
-<!--                    </releases>-->
-<!--                    <snapshots>-->
-<!--                        <enabled>false</enabled>-->
-<!--                    </snapshots>-->
-<!--                </repository>-->
+                <repository>
+                    <id>central</id>
+                    <name>Maven Central</name>
+                    <url>https://repo.maven.apache.org/maven2</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
                 <repository>
                     <id>repository2</id>
                     <url>https://${env.REPO_HOSTNAME}/artifactory/mirrors-consolidated/</url>
