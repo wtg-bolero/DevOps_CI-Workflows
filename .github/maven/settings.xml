@@ -3,17 +3,6 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <servers>
         <server>
-            <id>repository2</id>
-            <configuration>
-                <httpHeaders>
-                    <property>
-                        <name>bolero-application</name>
-                        <value>${env.REPO_SPECIAL_SAUCE}</value>
-                    </property>
-                </httpHeaders>
-            </configuration>
-        </server>
-        <server>
             <id>bolero-releases</id>
             <username>${env.REPO_USERNAME}</username>
             <password>${env.REPO_PASSWORD}</password>
@@ -30,6 +19,17 @@
             <id>bolero-snapshots</id>
             <username>${env.REPO_USERNAME}</username>
             <password>${env.REPO_PASSWORD}</password>
+            <configuration>
+                <httpHeaders>
+                    <property>
+                        <name>bolero-application</name>
+                        <value>${env.REPO_SPECIAL_SAUCE}</value>
+                    </property>
+                </httpHeaders>
+            </configuration>
+        </server>
+        <server>
+            <id>repository2</id>
             <configuration>
                 <httpHeaders>
                     <property>
@@ -49,22 +49,22 @@
             <mirrorOf>central</mirrorOf>
         </mirror>
         <mirror>
-            <id>repository2</id>
+            <id>mirror-bolero-releases</id>
+            <name>repository02 releases</name>
+            <url>https://${env.REPO_HOSTNAME}/artifactory/bolero-releases/</url>
+            <mirrorOf>!central,!mirror-bolero-snapshots</mirrorOf>
+        </mirror>
+        <mirror>
+            <id>mirror-bolero-snapshots</id>
+            <name>repository02 snapshots</name>
+            <url>https://${env.REPO_HOSTNAME}/artifactory/bolero-snapshots/</url>
+            <mirrorOf>!mirror-bolero-releases,!central</mirrorOf>
+        </mirror>
+        <mirror>
+            <id>bolero-mirrors-consolidated</id>
             <name>repository02 mirrors consolidated</name>
             <url>https://${env.REPO_HOSTNAME}/artifactory/mirrors-consolidated/</url>
             <mirrorOf>!central,!mirror-bolero-snapshots,!mirror-bolero-releases</mirrorOf>
-        </mirror>
-        <mirror>
-            <id>bolero-releases</id>
-            <name>repository02 releases</name>
-            <url>https://${env.REPO_HOSTNAME}/artifactory/bolero-releases/</url>
-            <mirrorOf>!central,!bolero-mirrors-consolidated,!mirror-bolero-snapshots</mirrorOf>
-        </mirror>
-        <mirror>
-            <id>bolero-snapshots</id>
-            <name>repository02 snapshots</name>
-            <url>https://${env.REPO_HOSTNAME}/artifactory/bolero-snapshots/</url>
-            <mirrorOf>!central!bolero-mirrors-consolidated,!mirror-bolero-releases</mirrorOf>
         </mirror>
     </mirrors>
 
@@ -82,24 +82,13 @@
             </properties>
             <repositories>
                 <repository>
-                    <id>central</id>
-                    <name>Maven Central</name>
-                    <url>https://repo.maven.apache.org/maven2</url>
-                    <releases>
-                        <enabled>true</enabled>
-                    </releases>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                </repository>
-                <repository>
                     <id>repository2</id>
                     <url>https://${env.REPO_HOSTNAME}/artifactory/mirrors-consolidated/</url>
                     <releases>
                         <enabled>true</enabled>
                     </releases>
                     <snapshots>
-                        <enabled>false</enabled>
+                        <enabled>true</enabled>
                     </snapshots>
                 </repository>
                 <repository>
@@ -124,16 +113,16 @@
                 </repository>
             </repositories>
             <pluginRepositories>
-<!--                <pluginRepository>-->
-<!--                    <id>central</id>-->
-<!--                    <url>https://repo.maven.apache.org/maven2</url>-->
-<!--                    <releases>-->
-<!--                        <enabled>true</enabled>-->
-<!--                    </releases>-->
-<!--                    <snapshots>-->
-<!--                        <enabled>false</enabled>-->
-<!--                    </snapshots>-->
-<!--                </pluginRepository>-->
+                <pluginRepository>
+                    <id>central</id>
+                    <url>https://repo.maven.apache.org/maven2</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </pluginRepository>
                 <pluginRepository>
                     <id>repository2</id>
                     <url>https://${env.REPO_HOSTNAME}/artifactory/mirrors-consolidated/</url>
