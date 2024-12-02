@@ -8,34 +8,30 @@ on:
         required: true
         type: string
       require-angular:
-        description: 'Add angular to the runner'
+        description: 'Add frontend build support'
         required: false
         default: false
         type: boolean
       do-rename:
-        description: 'Rename for branch/tag'
+        description: 'Do maven version rename for branch/tag'
         required: false
         default: false
         type: boolean
       do-sonarqube:
-        description: 'Do SonarQube scan'
+        description: 'Do SonarQube scan: Ignore - Currently unavailable'
         required: false
         default: false
         type: boolean
       do-owasp:
-        description: 'Perform OWASP check'
+        description: 'Do OWASP check (do not use unless directed to by Alex)'
         required: false
         default: false
         type: boolean
       do-deploy:
-        description: 'Deploy artifacts to repository'
+        description: 'Do deploy artifacts to repository'
         required: false
         default: false
         type: boolean
-#  push:
-#    branches:
-#      - master
-#  workflow_dispatch:
 
 env:
   MAVEN_ARGS: "-s ./alex_maven/.github/maven/settings.xml -B -f ${{ inputs.pom-path }}"
@@ -95,6 +91,12 @@ jobs:
         if: ${{ inputs.require-angular }}
         run: |
           npm install -g @angular/cli@15
+
+      - uses: browser-actions/setup-chrome@v1
+        if: ${{ inputs.require-angular }}
+        with:
+          chrome-version: 120
+          install-chromedriver: true
 
       - name: Validate tooling - angular
         if: ${{ inputs.require-angular }}
