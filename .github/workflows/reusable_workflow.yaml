@@ -141,4 +141,4 @@ jobs:
       - name: Do Maven build
         if: ${{ !inputs.do-deploy }}
         run: |
-          mvn clean package
+          mvn clean verify
